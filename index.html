@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Sberbank-Style Crypto Converter&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Подключение стилей Select2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Arial', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(44, 165, 90, 0.2));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-size: cover;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: background-color 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(10px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.25);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255, 255, 255, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>animation: fadeIn 1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>from {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>transform: translateY(20px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>to {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>transform: translateY(0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter h2 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #000; /* Чёрный цвет для заголовка */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter input, .converter select, .converter button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 15px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.7);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #000; /* Чёрный цвет для текста */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(10px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter input::placeholder {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #888; /* Серый оттенок для placeholder */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter select {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .select2-container--default .select2-selection--single {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: rgba(255, 255, 255, 0.7);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #000; /* Чёрный цвет для текста */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #2CA55A; /* Зелёный цвет Сбербанка */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-color: #218f4f; /* Темнее зелёный при наведении */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button .arrows {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button .arrows:before,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button .arrows:after {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 7px solid transparent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button .arrows:before {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 14px solid white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateX(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.converter .swap-button .arrows:after {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-top: 14px solid white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateX(50%);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.result {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #000; /* Чёрный цвет для текста */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(5px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.7);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.loading {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #000; /* Чёрный цвет для текста */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="converter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Crypto Converter&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="number" id="amount" placeholder="Enter amount" oninput="convert()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;select id="fromCurrency" class="currency-select"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="swap-button" onclick="swapCurrencies()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="arrows"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;select id="toCurrency" class="currency-select"&gt;&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="loading" id="loading" style="display: none;"&gt;Loading...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="result" id="result"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Подключение библиотеки Select2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const fromCurrency = document.getElementById('fromCurrency');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const toCurrency = document.getElementById('toCurrency');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const amountInput = document.getElementById('amount');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const resultDiv = document.getElementById('result');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const loadingDiv = document.getElementById('loading');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let cachedCurrencies = JSON.parse(localStorage.getItem('currencies')) || null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let allCurrencies = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Заполняем выпадающие списки валютами и кэшируем их</p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function populateCurrencies() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (cachedCurrencies) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>allCurrencies = cachedCurrencies;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>populateSelects(allCurrencies);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>loadingDiv.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const response = await fetch('https://api.coingecko.com/api/v3/coins/list');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const data = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>allCurrencies = data;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>localStorage.setItem('currencies', JSON.stringify(data));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>populateSelects(allCurrencies);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>loadingDiv.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>loadingDiv.textContent = 'Failed to load currencies';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function populateSelects(data) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>fromCurrency.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>toCurrency.innerHTML = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const popularCurrencies = ['bitcoin', 'ethereum', 'tether', 'usd-coin', 'binancecoin']; // Example popular coins</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Группировка популярных валют</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let groupedData = `</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;optgroup label="Popular Currencies"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>popularCurrencies.forEach(coin =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const currency = data.find(c =&gt; c.id === coin);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (currency) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>groupedData += `&lt;option value="${currency.id}"&gt;${currency.name}&lt;/option&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>groupedData += '&lt;/optgroup&gt;&lt;optgroup label="All Currencies"&gt;';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>data.forEach(coin =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>groupedData += `&lt;option value="${coin.id}"&gt;${coin.name}&lt;/option&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>groupedData += '&lt;/optgroup&gt;';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>fromCurrency.innerHTML = groupedData;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>toCurrency.innerHTML = groupedData;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Инициализация Select2 с автодополнением</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('.currency-select').select2({</p>
+<p class="p1"><span class="Apple-converted-space">        </span>placeholder: 'Select a currency',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>allowClear: true</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadFavorites();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Мгновенная конвертация валюты</p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function convert() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const amount = amountInput.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const from = fromCurrency.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const to = toCurrency.value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!amount || !from || !to || amount &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>resultDiv.textContent = 'Please fill all fields correctly';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>loadingDiv.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${from}&amp;vs_currencies=${to}`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const data = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>loadingDiv.style.display = 'none';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (data[from] &amp;&amp; data[from][to]) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const rate = data[from][to];</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const result = amount * rate;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>resultDiv.textContent = `${amount} ${from.toUpperCase()} = ${result.toFixed(6)} ${to.toUpperCase()}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>resultDiv.textContent = 'Error in conversion';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>loadingDiv.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>resultDiv.textContent = 'Failed to fetch conversion rate';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Функция swap для обмена валютами</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function swapCurrencies() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const temp = fromCurrency.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>fromCurrency.value = toCurrency.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>toCurrency.value = temp;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('.currency-select').trigger('change');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>convert();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Загрузка избранных валют</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function loadFavorites() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const favorites = JSON.parse(localStorage.getItem('favorites')) || [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (favorites.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>fromCurrency.value = favorites[0].from;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>toCurrency.value = favorites[0].to;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('.currency-select').trigger('change');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>populateCurrencies();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
